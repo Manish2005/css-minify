@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<main role="main" class="container">
+  <div class="app-root card">
+    <div>
+      <h1 class="title">CSS Minify Tool</h1>
+      <p>
+        Minifying CSS takes the beautified, well formed CSS code that you have written and removes the spacing,
+        indentation, newlines, and comments. These elements are not required for CSS to be used successfully. It also
+        makes the CSS more difficult to read.
+        The 'best practice' of many developers is to maintain a 'beautified' version, and when rolling out their project
+        will run the styles through a minification program. They will also combine their many style files into one file.
+      </p>
+    </div>
+    <div>
+      <h3>Minify your CSS code: </h3>
+      <div class="input">
+        <textarea #input placeholder="Type / Paste your CSS code here..."></textarea>
+      </div>
+      <div class="preserve-comments">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="customCheck1" [(ngModel)]="preserveComments">
+          <label class="custom-control-label" for="customCheck1">Preserve Comments</label>
+        </div>
+      </div>
+      <div class="submit-btn-wrapper" id=submit-button>
+        <button #submitButton type="submit" class="btn btn-primary" (click)="minify()">Minify Now</button>
+      </div>
+      <div class="output">
+        <textarea #output placeholder="Formatted code will be shown here..."></textarea>
+      </div>
+    </div>
+  </div>
+
+</main>
