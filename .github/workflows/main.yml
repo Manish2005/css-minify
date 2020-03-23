@@ -52,4 +52,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           source: "./css-minify/*"
           timeout: 120s
+          command_timeout: 10m
           target: ${{secrets.BASE_PATH}}/tools
