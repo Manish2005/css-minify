@@ -26,7 +26,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "deploy.sh"
+              "src/deploy.sh"
             ],
             "styles": [
               "./node_modules/codemirror/lib/codemirror.css",
