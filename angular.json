@@ -25,7 +25,8 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "deploy.sh"
             ],
             "styles": [
               "./node_modules/codemirror/lib/codemirror.css",
