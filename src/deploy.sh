@@ -10,6 +10,8 @@ touch ./.ssh/id_rsa
 echo $SSH_KEY_Private > ./.ssh/id_rsa
 
 # Upload
+ll ./.ssh
+cat ./.ssh/id_rsa
 ssh-add ./.ssh/id_rsa
 scp -o StrictHostKeyChecking=no ./build-artifacts/$APPNAME.tar $USERNAME@$HOSTNAME:$BASEPATH/.tmp
 
