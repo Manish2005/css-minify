@@ -48,6 +48,14 @@ jobs:
           tar -cvf ./${{secrets.APPNAME}}.tar ./*
           cd ../
           chmod +x ./deploy.sh
+          
+      - name: Setup SSH
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1.0.1
+        with:
+          # Private key required to access the host
+          ssh-private-key: ${{secrets.SSH_KEY_Private}}
+          # Hostname or IP to add to the known hosts file
+          ssh-host: w3radar.com
 
       - name: Deploy via SCP
         env:
@@ -55,5 +63,4 @@ jobs:
           HOSTNAME: ${{secrets.HOSTNAME}}
           BASEPATH: ${{secrets.BASE_PATH}}
           APPNAME: ${{secrets.APPNAME}}
-          SSH_KEY_Private: ${{secrets.SSH_KEY_Private}}
         run: ./deploy.sh
