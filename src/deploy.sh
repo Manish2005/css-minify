@@ -7,7 +7,7 @@
 # Add SSH key
 mkdir -p ./.ssh
 touch ./.ssh/id_rsa
-cat $SSH_KEY_Private > ./.ssh/id_rsa
+echo $SSH_KEY_Private > ./.ssh/id_rsa
 
 # Upload
 ssh-add ./.ssh/id_rsa
