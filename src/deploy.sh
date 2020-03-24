@@ -2,18 +2,8 @@
 # HOSTNAME=${{secrets.HOSTNAME}}
 # BASEPATH=${{secrets.BASE_PATH}}
 # APPNAME=${{secrets.APPNAME}}
-# SSH_KEY_Private=${{secrets.SSH_KEY_Private}}
-
-# Add SSH key
-mkdir -p ./.ssh
-touch ./.ssh/id_rsa
-echo $SSH_KEY_Private
-echo $SSH_KEY_Private > ./.ssh/id_rsa
 
 # Upload
-ls ./.ssh
-cat ./.ssh/id_rsa
-ssh-add ./.ssh/id_rsa
 scp -o StrictHostKeyChecking=no ./build-artifacts/$APPNAME.tar $USERNAME@$HOSTNAME:$BASEPATH/.tmp
 
 ssh -o StrictHostKeyChecking=no -l $USERNAME $HOSTNAME /bin/bash << EOF
