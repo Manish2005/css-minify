@@ -11,6 +11,7 @@ ssh -o StrictHostKeyChecking=no -l $USERNAME $HOSTNAME /bin/bash << EOF
     ls
     cd $BASEPATH
     pwd
+    ls
     mkdir -p ./${APPNAME}1
     tar -C ./${APPNAME}1 -xvf ./.tmp/${APPNAME}.tar
 EOF
