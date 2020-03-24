@@ -47,6 +47,7 @@ jobs:
           mv ./deploy.sh ../
           tar -cvf ./${{secrets.APPNAME}}.tar ./*
           cd ../
+          chmod +x ./deploy.sh
 
       - name: Deploy via SCP
         env:
