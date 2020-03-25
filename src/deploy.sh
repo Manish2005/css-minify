@@ -7,9 +7,9 @@
 echo 'Uploading tar to server...'
 ls
 ls ./build-artifacts
-scp -o ConnectTimeout=120 ./build-artifacts/$APPNAME.tar $USERNAME@$HOSTNAME:$BASEPATH/.tmp
+scp -o StrictHostKeyChecking=no -o ConnectTimeout=120 ./build-artifacts/$APPNAME.tar $USERNAME@$HOSTNAME:$BASEPATH/tools/.tmp
 echo 'Making ssh connection to server...'
-ssh -o ConnectTimeout=120 -l $USERNAME $HOSTNAME /bin/bash << EOF
+ssh -o StrictHostKeyChecking=no -o ConnectTimeout=120 -l $USERNAME $HOSTNAME /bin/bash << EOF
     cd $BASEPATH/tools
     mkdir -p ./${APPNAME}1
     tar -C ./${APPNAME}1 -xvf ./.tmp/${APPNAME}.tar
