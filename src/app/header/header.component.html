@@ -1,3 +1,26 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
   <a class="navbar-brand" href="#">CSS Minify</a>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class=" navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="http://tools.w3radar.com/regex-tester">RegEx Tester</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://tools.w3radar.com/css-beautifier">CSS Beautifier</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="http://tools.w3radar.com/rgb-hex">RGB to HEX Converter</a>
+      </li>
+    </ul>
+  </div>
 </nav>
