@@ -23,9 +23,10 @@ jobs:
 
       # Build
       - name: Run Build
-        run: |
-          npm run build:prod
-      - uses: actions/upload-artifact@v1
+        run: npm run build:prod
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v1
         with:
           name: build-artifacts
           path: ./dist/${{secrets.APPNAME}}
@@ -34,7 +35,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      # - continue-on-error: false
       - name: Download artifact
         uses: actions/download-artifact@v1.0.0
         with:
@@ -46,14 +46,11 @@ jobs:
           mv ./deploy.sh ../
           tar -cvf ./${{secrets.APPNAME}}.tar ./*
           cd ../
-          chmod +x ./deploy.sh
 
       - name: Setup SSH
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1.0.1
         with:
-          # Private key required to access the host
           ssh-private-key: ${{secrets.SSH_KEY_Private}}
-          # Hostname or IP to add to the known hosts file
           ssh-host: ${{secrets.HOSTNAME}}
 
       - name: Deploy via SCP
@@ -62,4 +59,6 @@ jobs:
           HOSTNAME: ${{secrets.HOSTNAME}}
           BASEPATH: ${{secrets.BASE_PATH}}
           APPNAME: ${{secrets.APPNAME}}
-        run: ./deploy.sh
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh
