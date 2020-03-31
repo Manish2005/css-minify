@@ -62,3 +62,6 @@ jobs:
           APPNAME: ${{secrets.APPNAME}}
         run: |
           gcloud config list
+          gcloud compute ssh ${{GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}}
+          ls
+          exit
