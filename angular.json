@@ -26,12 +26,18 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/deploy.sh",
               "src/.htaccess"
             ],
-            "styles": [
-              "./node_modules/codemirror/lib/codemirror.css",
-              "src/styles.scss"
+            "styles": [{
+                "input": "./node_modules/codemirror/lib/codemirror.css",
+                "bundleName": "styles",
+                "inject": false
+              },
+              {
+                "input": "src/styles.scss",
+                "bundleName": "styles",
+                "inject": false
+              }
             ],
             "scripts": [
               "./node_modules/codemirror/lib/codemirror.js",
@@ -46,7 +52,7 @@
                 "with": "src/environments/environment.prod.ts"
               }],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
