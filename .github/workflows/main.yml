@@ -47,11 +47,12 @@ jobs:
           tar -cvf ./${{secrets.APPNAME}}.tar ./*
           cd ../
 
-      - name: Setup SSH
-        uses: kielabokkie/ssh-key-and-known-hosts-action@v1.0.1
+      - name: Setup gcloud environment
+        uses: GoogleCloudPlatform/github-actions@0.1.2
         with:
-          ssh-private-key: ${{secrets.SSH_KEY_Private}}
-          ssh-host: ${{secrets.HOSTNAME}}
+          service_account_email: ${{secrets.GCLOUD_SERVICE_ACCOUNT_EMAIL}}
+          service_account_key: ${{secrets.GCLOUD_SERVICE_ACCOUNT_KEY}}
+          project_key: ${{secrets.GCLOUD_PROJECT}}
 
       - name: Deploy via SCP
         env:
@@ -60,5 +61,7 @@ jobs:
           BASEPATH: ${{secrets.BASE_PATH}}
           APPNAME: ${{secrets.APPNAME}}
         run: |
-          chmod +x ./deploy.sh
-          ./deploy.sh
+          gcloud config list
+          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=asia-south1-a --project=w3radar
+          ls
+          exit
