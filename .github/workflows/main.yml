@@ -62,6 +62,6 @@ jobs:
           APPNAME: ${{secrets.APPNAME}}
         run: |
           gcloud config list
-          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=asia-south1-a
+          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=asia-south1-a --project=w3radar
           ls
           exit
