@@ -43,7 +43,6 @@ jobs:
       - name: Create bundle
         run: |
           cd ./build-artifacts
-          # mv ./deploy.sh ../
           tar -cvf ./${{secrets.APPNAME}}.tar ./*
           cd ../
 
