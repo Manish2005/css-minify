@@ -61,5 +61,5 @@ jobs:
           BASEPATH: ${{secrets.BASE_PATH}}
           APPNAME: ${{secrets.APPNAME}}
         run: |
-          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=asia-south1-a --project=w3radar --command="cd ./cicd && ./deploy.sh test-123"
+          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd && ./deploy.sh ${{secrets.APPNAME}}"
           
