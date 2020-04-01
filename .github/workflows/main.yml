@@ -54,9 +54,9 @@ jobs:
 
       - name: Move Artifacts
         run: |
-          gcloud compute scp ./build-artifacts/${{secrets.APPNAME}}.tar.gz ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}}:./cicd/ --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} 
+          gcloud compute scp ./build-artifacts/${{secrets.APPNAME}}.tar.gz ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}}:./cicd/tmp/ --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} 
           
       - name: Deploy to GCP
         run: |
-          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd;ls;./deploy.sh css-minify"
+          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd;ls;./deploy.sh ${{secrets.APPNAME}}"
           
