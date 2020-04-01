@@ -43,8 +43,7 @@ jobs:
       - name: Create bundle
         run: |
           cd ./build-artifacts
-          tar -cvf ./${{secrets.APPNAME}}.tar ./*
-          cd ../
+          tar -czvf ./${{secrets.APPNAME}}.tar.gz ./*
 
       - name: Setup gcloud environment
         uses: GoogleCloudPlatform/github-actions@0.1.2
@@ -53,7 +52,8 @@ jobs:
           service_account_key: ${{secrets.GCLOUD_SERVICE_ACCOUNT_KEY}}
           project_key: ${{secrets.GCLOUD_PROJECT}}
 
-      - name: Deploy via SCP
+      - name: Deploy to GCP
         run: |
+          gcloud compute scp ./${{secrets.APPNAME}}.tar.gz ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}}:./cicd/ --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} 
           gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd && ./deploy.sh ${{secrets.APPNAME}}"
           
