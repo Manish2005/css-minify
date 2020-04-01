@@ -55,11 +55,6 @@ jobs:
           project_key: ${{secrets.GCLOUD_PROJECT}}
 
       - name: Deploy via SCP
-        env:
-          USERNAME: ${{secrets.USERNAME}}
-          HOSTNAME: ${{secrets.HOSTNAME}}
-          BASEPATH: ${{secrets.BASE_PATH}}
-          APPNAME: ${{secrets.APPNAME}}
         run: |
-          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd && ./deploy.sh ${{secrets.APPNAME}}"
+          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd && ./deploy.sh ${{secrets.APPNAME}}"
           
