@@ -53,7 +53,9 @@ jobs:
           project_key: ${{secrets.GCLOUD_PROJECT}}
 
       - name: Deploy to GCP
+        env:
+          APPANE: ${{secrets.APPNAME}}
         run: |
           gcloud compute scp ./build-artifacts/${{secrets.APPNAME}}.tar.gz ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}}:./cicd/ --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} 
-          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd && ./deploy.sh ${{secrets.APPNAME}}"
+          gcloud compute ssh ${{secrets.GCLOUD_USERNAME}}@${{secrets.GCLOUD_VM_NAME}} --zone=${{secrets.GCLOUD_ZONE}} --project=${{secrets.GCLOUD_PROJECT}} --command="cd ./cicd && ./deploy.sh ${{APPNAME}}"
           
